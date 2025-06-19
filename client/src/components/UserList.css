@@ -1,0 +1,76 @@
+.user-list {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.user-list h3 {
+  margin-bottom: 1rem;
+  color: #4CAF50;
+  font-size: 1.2rem;
+}
+
+.users-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.user-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #4CAF50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.user-status {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  color: #4CAF50;
+}
+
+.no-users {
+  text-align: center;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.user-list-loading {
+  text-align: center;
+  opacity: 0.7;
+  font-style: italic;
+} 

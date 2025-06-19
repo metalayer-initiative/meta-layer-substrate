@@ -1,0 +1,54 @@
+{
+  "name": "metalayer-initiative",
+  "version": "1.0.0",
+  "description": "A decentralized social platform with human verification and AI-powered agent orchestration",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm start",
+    "build": "npm run build:client",
+    "build:client": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "setup": "npm run install:all && npm run setup:db",
+    "setup:db": "cd scripts && node setup-db.js",
+    "start:agents": "cd scripts && node start-agents.js",
+    "test": "npm run test:server && npm run test:client",
+    "test:server": "cd server && npm test",
+    "test:client": "cd client && npm test",
+    "lint": "npm run lint:server && npm run lint:client",
+    "lint:server": "cd server && npm run lint",
+    "lint:client": "cd client && npm run lint"
+  },
+  "keywords": [
+    "metalayer",
+    "decentralized",
+    "social",
+    "poh",
+    "fractal",
+    "communities",
+    "chat",
+    "ai",
+    "agents",
+    "swarm",
+    "eliza"
+  ],
+  "author": "Metalayer Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/metalayer/metalayer-initiative.git"
+  },
+  "bugs": {
+    "url": "https://github.com/metalayer/metalayer-initiative/issues"
+  },
+  "homepage": "https://github.com/metalayer/metalayer-initiative#readme"
+} 

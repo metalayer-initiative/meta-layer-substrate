@@ -1,0 +1,64 @@
+.community-page {
+  padding: 2rem;
+  color: white;
+}
+
+.community-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.community-container h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.community-container > p {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+}
+
+.communities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.community-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.community-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #4CAF50;
+}
+
+.community-rules {
+  margin-bottom: 1.5rem;
+}
+
+.community-rules p {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.community-card .btn {
+  width: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: white;
+  font-size: 1.2rem;
+} 

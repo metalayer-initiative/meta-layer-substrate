@@ -1,0 +1,33 @@
+{
+  "name": "metalayer-server",
+  "version": "1.0.0",
+  "description": "Metalayer Initiative Backend Server",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "node ../scripts/test.js",
+    "setup-db": "npx prisma migrate dev && npx prisma generate",
+    "seed": "node ../scripts/setup-db.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "prisma": "^5.0.0",
+    "@prisma/client": "^5.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "axios": "^1.5.0",
+    "@solana/web3.js": "^1.87.0",
+    "bcryptjs": "^2.4.3",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.10.0",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["metalayer", "poh", "communities", "chat", "solana", "tee", "opa"],
+  "author": "Metalayer Team",
+  "license": "MIT"
+} 

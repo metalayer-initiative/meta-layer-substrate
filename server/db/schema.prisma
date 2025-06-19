@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  poh_status  String   @default("pending") // pending, verified, failed
+  role        String   @default("user") // user, admin, moderator
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  // Relations
+  sessions     Session[]
+  interactions Interaction[]
+  messages     Message[]
+  vault        Vault?
+  avatars      Avatar[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  user_id   String
+  token     String   @unique
+  timestamp DateTime @default(now())
+  expires_at DateTime
+
+  // Relations
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Community {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  ruleset     Json     // OPA policy JSON
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  // Relations
+  messages     Message[]
+  interactions Interaction[]
+  avatars      Avatar[]
+
+  @@map("communities")
+}
+
+model Interaction {
+  id            String   @id @default(cuid())
+  user_id       String
+  community_id  String?
+  action_type   String   // send_message, join_community, etc.
+  policy_applied Json?   // OPA decision result
+  block_tx_hash String?  // Solana transaction hash
+  metadata      Json?    // Additional interaction data
+  timestamp     DateTime @default(now())
+
+  // Relations
+  user      User        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  community Community?  @relation(fields: [community_id], references: [id], onDelete: SetNull)
+
+  @@map("interactions")
+}
+
+model Message {
+  id           String   @id @default(cuid())
+  sender_id    String
+  community_id String
+  content      String
+  timestamp    DateTime @default(now())
+  is_deleted   Boolean  @default(false)
+
+  // Relations
+  sender    User      @relation(fields: [sender_id], references: [id], onDelete: Cascade)
+  community Community @relation(fields: [community_id], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+model Vault {
+  id               String   @id @default(cuid())
+  user_id          String   @unique
+  reward_balance   Float    @default(0)
+  reputation_score Int      @default(0)
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  // Relations
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("vault")
+}
+
+model Avatar {
+  id           String   @id @default(cuid())
+  user_id      String
+  community_id String
+  is_active    Boolean  @default(true)
+  last_seen    DateTime @default(now())
+
+  // Relations
+  user      User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  community Community @relation(fields: [community_id], references: [id], onDelete: Cascade)
+
+  @@unique([user_id, community_id])
+  @@map("avatars")
+} 
