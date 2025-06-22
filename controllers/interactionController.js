@@ -1,4 +1,4 @@
-const { logInteraction } = require('../services/dbService');
+const { logInteraction } = require('../services/dbservice');
 
 // POST /interaction/log
 exports.logInteraction = async (req, res) => {
