@@ -102,6 +102,3 @@ Want to contribute to the Meta-Layer Initiative?
 * Project contribution: [Submit Work](https://themetalayer.org/contribute#bridgit)
 
 ---
-
-
-*This is an early prototype — please use and remix to explore next-gen coordination.*
