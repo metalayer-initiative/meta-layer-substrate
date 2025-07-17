@@ -26,8 +26,10 @@ app.use('/poh', require('./routes/poh'));
 app.use('/communities', require('./routes/communities'));
 app.use('/avatars', require('./routes/avatars'));
 app.use('/chat', require('./routes/chat'));
-app.use('/interaction', require('./routes/interaction'));
+app.use('/interactions', require('./routes/interactions'));  // ✅ New route
 app.use('/policy', require('./routes/policy'));
+app.use('/messages', require('./routes/messages'));
+
 
 // --- Health Check ---
 app.get('/', (req, res) => res.send('API is live!'));

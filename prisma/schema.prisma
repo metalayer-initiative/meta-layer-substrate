@@ -1,15 +1,62 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// schema.prisma
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String        @id @default(uuid())
+  email      String        @unique
+  PoH_status Boolean
+  role       String
+  created_at DateTime      @default(now())
+
+  sessions     Session[]
+  interactions Interaction[]
+  messages     Message[]
+}
+
+model Session {
+  session_id String   @id @default(uuid())
+  user_id    String
+  token      String
+  created_at DateTime @default(now())
+  active     Boolean
+
+  user User @relation(fields: [user_id], references: [id])
+}
+
+model Community {
+  id       String    @id @default(uuid())
+  name     String
+  ruleset  Json
+
+  messages Message[]
+}
+
+model Interaction {
+  id             String   @id @default(uuid())
+  user_id        String
+  action_type    String
+  policy_applied String
+  block_tx_hash  String   @unique
+  timestamp      DateTime @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+}
+
+model Message {
+  id           String   @id @default(uuid())
+  sender_id    String
+  community_id String
+  content      String
+  timestamp    DateTime @default(now())
+
+  sender    User      @relation(fields: [sender_id], references: [id])
+  community Community @relation(fields: [community_id], references: [id])
 }
