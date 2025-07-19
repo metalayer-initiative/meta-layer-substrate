@@ -51,11 +51,13 @@ model Interaction {
 }
 
 model Message {
-  id           String   @id @default(uuid())
-  sender_id    String
-  community_id String
-  content      String
-  timestamp    DateTime @default(now())
+  id                String   @id @default(uuid())
+  sender_id         String
+  community_id      String
+  content           String
+  timestamp         DateTime @default(now())
+  visible_to_roles  String[]
+  visible_to_users  String[]
 
   sender    User      @relation(fields: [sender_id], references: [id])
   community Community @relation(fields: [community_id], references: [id])
